@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Genre(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Artist(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
 class Playlist(models.Model):
     link = models.URLField(max_length=4000, null=False, blank=False)
     playlist_name = models.CharField(max_length=255)

@@ -12,3 +12,7 @@
 1. Cleaned up the project
 2. Conditioned it to only one project
 3. Added the SongSaver Project to get the data
+4. Added the spotify_auth file and spotify_service file to get link with my spotify application
+
+25/01/2025
+1. Added data in models.py to make way to multi-select dropdown in link.html

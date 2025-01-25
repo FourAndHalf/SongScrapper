@@ -18,3 +18,7 @@
 1. Added data in models.py to make way to multi-select dropdown in link.html
 2. Added the forms.py file to select the data from the html page to the model
 3. Detailed the form submission code in views.py file
+4. Added code and files to get data from a config.yaml file
+5. Added authentication account in Neon.Tech account
+6. Selected Neon.Tech postgres database as database for the project 
+7. Next to add the schema and table description for the project 

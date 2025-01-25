@@ -16,3 +16,5 @@
 
 25/01/2025
 1. Added data in models.py to make way to multi-select dropdown in link.html
+2. Added the forms.py file to select the data from the html page to the model
+3. Detailed the form submission code in views.py file

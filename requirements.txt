@@ -1,0 +1,8 @@
+python3
+django
+python-dotenv
+spotipy
+pyyaml
+logging
+pretty_errors
+dj_database_url

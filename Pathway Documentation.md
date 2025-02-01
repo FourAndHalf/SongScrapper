@@ -21,4 +21,7 @@
 4. Added code and files to get data from a config.yaml file
 5. Added authentication account in Neon.Tech account
 6. Selected Neon.Tech postgres database as database for the project 
-7. Next to add the schema and table description for the project 
+
+01/02/2025
+1. Added Schema for tables in Neon.Tech Database and inserted some values for the multi-select dropdown
+2. 

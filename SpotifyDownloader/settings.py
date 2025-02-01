@@ -1,12 +1,16 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-a=agiq)mb471vck=9xhd!aps=5lo7jh7io9&2c(zctbwdng6&h'
+load_dotenv()
 
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "True")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["yourdomain.com", "localhost", "127.0.0.1"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -49,10 +53,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'SpotifyDownloader.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
 
 AUTH_PASSWORD_VALIDATORS = [

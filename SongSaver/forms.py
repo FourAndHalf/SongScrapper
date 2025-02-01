@@ -1,8 +1,8 @@
 import pretty_errors
 
 from django import forms
-from models import Playlist, Artist, Genre
-from src.utils import load_config, check_environment
+from .models import Playlist, Artist, Genre
+from .src.utils import load_config
 
 config = load_config()
 environment = check_environment(config)
@@ -15,7 +15,6 @@ if environment == "TEST":
         lines_before=2,
         lines_after=2,
         code_color='yellow',
-        highlight='blue',
     )
 
 class SpotifyLinkForm(forms.ModelForm):

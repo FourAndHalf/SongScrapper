@@ -1,0 +1,20 @@
+settings:
+  environment: "TEST"
+  debug: true
+  version: "1.0.0"
+  allowed_hosts:
+    - "localhost"
+    - "127.0.0.1"
+    - "songscrapper.com"
+
+database:
+  engine: "postgresql"
+  host: "localhost"
+  port: 5432
+  name: "JIS_SCRAPPER"
+  user: "JINSON"
+  password: "PinkFloyd"
+
+logging:
+  level: "INFO"
+  file: "/var/log/SongScrapper.log"

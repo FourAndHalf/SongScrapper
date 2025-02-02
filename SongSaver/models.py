@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Artists(models.Model):
+class Artist(models.Model):
     code = models.CharField(max_length=12)
     desc = models.CharField(max_length=240)
 

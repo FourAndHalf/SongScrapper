@@ -14,6 +14,8 @@ DEBUG = os.getenv("DEBUG", "True")
 
 ALLOWED_HOSTS = ["yourdomain.com", "localhost", "127.0.0.1"]
 
+LOGGING = LOGGING_CONFIG
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

@@ -2,9 +2,7 @@ import pretty_errors
 
 from django.shortcuts import render, redirect
 from django.utils.timezone import now
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
+from SpotifyDownloader.logging_config import logger
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials
 from .forms import SpotifyLinkForm

@@ -1,20 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Artists(models.Model):
+    code = models.CharField(max_length=12)
+    desc = models.CharField(max_length=240)
+
+    def __str__(self):
+        return self.code
+
 class Genre(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    code = models.CharField(max_length=12)
+    desc = models.CharField(max_length=240)
 
     def __str__(self):
-        return self.name
+        return self.code
 
-class Artist(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
 class Playlist(models.Model):
     link = models.URLField(max_length=4000, null=False, blank=False)
-    playlist_name = models.CharField(max_length=255)
+    playlist_name = models.CharField(max_length=240)
     curated_artists = models.TextField() 
     genre = models.CharField(max_length=100)
     songs_count = models.PositiveIntegerField()

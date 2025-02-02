@@ -1,7 +1,6 @@
-from src.utils import load_config
+from .utils import load_admin_config
 
-config = load_config()
 
-api_key = config['api']['api-key']
-rate_limit = config['settings']['rate_limit']
-environment = config['settings']['environment']
+api_key = load_admin_config('api_key')
+rate_limit = load_admin_config('rate_limit')
+environment = load_admin_config('environment')

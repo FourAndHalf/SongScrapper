@@ -2,10 +2,9 @@ import pretty_errors
 
 from django import forms
 from .models import Playlist, Artist, Genre
-from .src.utils import load_config
+from .src.utils import load_admin_config
 
-config = load_config()
-environment = check_environment(config)
+environment = load_admin_config('environment')
 
 if environment == "TEST":
     pretty_errors.configure(

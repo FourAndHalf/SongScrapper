@@ -8,6 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
+
 DEBUG = os.getenv("DEBUG", "True")
 
 ALLOWED_HOSTS = ["yourdomain.com", "localhost", "127.0.0.1"]
@@ -53,7 +54,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'SpotifyDownloader.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    'default': dj_database_url.config(default=os.getenv("DATABASE_URL")),
+    'OPTIONS': {
+        'adapter': 'psycopg'
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -79,6 +83,20 @@ USE_I18N = True
 
 USE_TZ = True
 
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_BROWSER_XSS_FILTER = True
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+SECURE_SSL_REDIRECT = False
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [str(BASE_DIR / "static")]  
+
+MEDIA_ROOT = str(BASE_DIR / "media")           
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

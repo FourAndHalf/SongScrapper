@@ -1,8 +1,21 @@
-python3
-django
-python-dotenv
-spotipy
-pyyaml
-logging
-pretty_errors
-dj_database_url
+# Database Libraries
+asyncpg==0.30.0
+dj_database_url==2.3.0
+
+# Web Framework
+Django==5.0.2 
+
+# Logging & Error Handling
+pretty_errors==1.2.25
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# YAML Parsing (Use the latest stable version)
+PyYAML
+
+# Spotify API Wrapper
+spotipy==2.25.0
+
+# YouTube Downloader (Ensure latest stable)
+yt_dlp

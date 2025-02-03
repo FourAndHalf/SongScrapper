@@ -37,19 +37,39 @@ def get_spotify_data(url):
         item_type, item_id = match.groups()
         
         if item_type == "track":
-            logger.info()
+            try:
+                logger.info("Before fetching track data...")
+
+                tracks = get_track_info(item_id)
+
+            except Exception as ex:
+                logger.error(f"Failed to fetch track details: {ex}")
+                return {"error": "Failed to fetch track details"}
+
+        elif item_type == "playlist":
+            try: 
+                logger.info("Before fetching playlist track data...")
+
+                playlist = sp.playlist_tracks(item_id)
+
+                for item in playlist["items"]:
+                    track = item["track"]
+                    tracks.append(get_track_info(track))
+
+            except Exception as ex:
+                logger.error(f"Failed to fetch track details: {ex}")
+                return {"error": "Failed to fetch track details"}
 
     except Exception as ex:
-        logger.error(f"Error occurred while fetching track details: {ex}")
+        logger.error(f"Error occurred while fetching spotify details: {ex}")
         return None
 
-def get_track_info(url):
+def get_track_info(track_id):
     """     Fetch track details from spotify url      """
 
-    logger.info(f"Before starting fetching track details from spotify url: {url}")
+    logger.info(f"Before starting fetching track details from spotify track id: {track_id}")
 
     try:
-        track_id = url.split("/")[-1].split("?")[0]
         track = sp.track(track_id)
 
         return {
@@ -61,6 +81,6 @@ def get_track_info(url):
             "spotify_url": track["external_urls"]["spotify"]
         }
     except Exception as ex:
-        logger.error(f"Error occurred while fetching track details: {ex}")
+        logger.error(f"Error occurred while fetching track id ({track_id}) details: {ex}")
         return None
 

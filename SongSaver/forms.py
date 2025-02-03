@@ -2,7 +2,7 @@ import pretty_errors
 
 from django import forms
 from .models import Playlist, Artist, Genre
-from .src.utils import load_admin_config
+from .src.utils.utils import load_admin_config
 
 environment = load_admin_config('environment')
 

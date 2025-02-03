@@ -36,3 +36,8 @@
 3. Created serializers.py for REST api framework
 4. Created repository.py for getting data from database
 5. Created SpotifyService project for interacting with spotify api
+
+03/02/2025
+
+1. Added the services folder in songsaver to write all the logic in
+2. Added the youtube library to download the mp3 file of the music

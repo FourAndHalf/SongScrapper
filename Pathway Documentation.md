@@ -49,3 +49,4 @@
 
 1. Wrote the code in main.py to work this all together
 2. Added necessary logging of data along the way
+3. Wrote some unit tests to test the working of the application

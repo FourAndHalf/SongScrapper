@@ -41,3 +41,11 @@
 
 1. Added the services folder in songsaver to write all the logic in
 2. Added the youtube library to download the mp3 file of the music
+3. Removed the separate services folder to write logic and wrote all the logic in src folder as per industry standards
+4. Have to add celery for background downloading
+5. Make this all come together and test the application before further proceedings
+
+04/02/2025
+
+1. Wrote the code in main.py to work this all together
+2. Added necessary logging of data along the way

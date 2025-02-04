@@ -4,6 +4,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import os
 from dotenv import load_dotenv
 from SpotifyDownloader.logging_config import logger
+from utils.validators import is_spotify_url
 
 load_dotenv()
 
@@ -16,17 +17,13 @@ sp = spotipy.Spotify(
 
 SPOTIFY_URL_PATTERN = re.compile(r"https?://open\.spotify\.com/(track|playlist)/([a-zA-Z0-9]+)")
 
-def is_valid_spotify_url(url):
-    """     Check if the provided URL is a valid Spotify track or playlist URL.     """
-    return bool(SPOTIFY_URL_PATTERN.match(url))
-
 def get_spotify_data(url):
     """     Determine url is a playlist / track and behave accordingly      """
 
     tracks = []
     song_count = 0    
 
-    if not is_valid_spotify_url(url):
+    if not is_spotify_url(url):
         logger.warning(f"Invalid spotify url provided: {url}")
         return {"error": "Invalid Spotify URL. Only track and playlist URLs are supported."}
     
@@ -60,6 +57,8 @@ def get_spotify_data(url):
                 logger.error(f"Failed to fetch track details: {ex}")
                 return {"error": "Failed to fetch track details"}
 
+        return tracks
+    
     except Exception as ex:
         logger.error(f"Error occurred while fetching spotify details: {ex}")
         return None

@@ -2,15 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Artist(models.Model):
-    code = models.CharField(max_length=12)
-    desc = models.CharField(max_length=240)
+    code = models.CharField(max_length=12, null=False, blank=False, default="100")
+    desc = models.CharField(max_length=240, default="UNKNOWN")
 
     def __str__(self):
         return self.code
 
 class Genre(models.Model):
-    code = models.CharField(max_length=12)
-    desc = models.CharField(max_length=240)
+    code = models.CharField(max_length=12, null=False, blank=False, default="100")
+    desc = models.CharField(max_length=240, default="UNKNOWN")
 
     def __str__(self):
         return self.code

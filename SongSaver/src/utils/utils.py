@@ -11,8 +11,8 @@ def load_admin_config(key):
 
     file_name = 'admin_config.yaml'
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    CONFIG_PATH = os.path.join(BASE_DIR, file_name)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    CONFIG_PATH = os.path.abspath(os.path.join(BASE_DIR, '../../..', 'SpotifyDownloader', 'admin_config.yaml'))
 
     if not os.path.exists(CONFIG_PATH):
         raise FileNotFoundError(f"Configuration file not found: {CONFIG_PATH}")

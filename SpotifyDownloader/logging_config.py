@@ -2,6 +2,8 @@ import os
 import logging
 import logging.config
 
+LOG_FILE_PATH = os.path.join(os.path.dirname(__file__), "app.log")
+
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -17,7 +19,7 @@ LOGGING_CONFIG = {
         "file": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": os.path.join(os.path.dirname(__file__), "app.log"),
+            "filename": LOG_FILE_PATH,
             "formatter": "detailed"
         },
         "console": {
@@ -39,7 +41,5 @@ LOGGING_CONFIG = {
         }
     }
 }
-
-logging.config.dictConfig(LOGGING_CONFIG)
 
 logger = logging.getLogger("app")

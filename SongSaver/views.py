@@ -18,7 +18,7 @@ pretty_errors.configure(
 )
 
 def startup_page(request):
-    return render(request, 'SongSaver/link.html')
+    return render(request, 'loader.html')
 
 def create_playlist(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def create_playlist(request):
     else:
         form = SpotifyLinkForm()
 
-    return render(request, "SongSaver/link.html", {'form': form})
+    return render(request, "link.html", {'form': form})
 
 
 def post_data(form):

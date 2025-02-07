@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loader</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/loader.css' %}"
+    />
+  </head>
+  <body>
+    <div class="loader-container" id="loader">
+      <div class="banter-loader">
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+        <div class="banter-loader__box"></div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        setTimeout(function () {
+          // document.getElementById("loader").style.display = "none"; document.getElementById("content").style.display = "block";
+        }, 5000);
+      };
+    </script>
+  </body>
+</html>

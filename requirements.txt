@@ -19,3 +19,4 @@ spotipy==2.25.0
 
 # YouTube Downloader (Ensure latest stable)
 yt_dlp
+ffmpeg

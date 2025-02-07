@@ -50,3 +50,12 @@
 1. Wrote the code in main.py to work this all together
 2. Added necessary logging of data along the way
 3. Wrote some unit tests to test the working of the application
+
+07/02/2025
+
+1. Tested the application and the song download works
+2. Created a beautiful loader and chose to create a colorful and fun website for the song scrapper.
+3. Chose to create pages to enter the link and song details, an admin page to create songs and genres / codes
+4. An user login page / registration page if the user wants to download playlists
+5. A listing page of the songs / playlists created by the user, when clicking on one of them shows the songs in that list
+6. Another listing of the popular songs / playlists as inputted by the user

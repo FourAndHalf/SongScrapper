@@ -3,7 +3,7 @@ import pretty_errors
 from django.db import connection
 from django import forms
 from .models import Playlist, Artist, Genre
-from src.database.queries.codes_manager import fetch_artists, fetch_genres
+from .src.database.queries.codes_manager import fetch_artists, fetch_genres
 from .src.utils.utils import load_admin_config
 
 environment = load_admin_config('environment')

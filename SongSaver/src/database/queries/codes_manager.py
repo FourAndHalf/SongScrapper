@@ -4,9 +4,8 @@ def fetch_artists():
     """
     Fetches all artists from the JIM_CODES table.
     """
-
     with connection.cursor() as cursor:
-        cursor.execute("SELECT JCODE_CODE, JCODE_DESC FROM JIM_CODES WHERE JCODE_TYPE = 'ARTIST'")
+        cursor.execute('SELECT "JCODE_CODE", "JCODE_DESC" FROM "JIM_CODES" WHERE "JCODE_TYPE" = %s', ['ARTIST'])
         rows = cursor.fetchall()
     return rows
 
@@ -14,8 +13,7 @@ def fetch_genres():
     """
     Fetches all genres from the JIM_CODES table.
     """
-
     with connection.cursor() as cursor:
-        cursor.execute("SELECT JCODE_CODE, JCODE_DESC FROM JIM_CODES WHERE JCODE_TYPE = 'GENRE'")
+        cursor.execute('SELECT "JCODE_CODE", "JCODE_DESC" FROM "JIM_CODES" WHERE "JCODE_TYPE" = %s', ['GENRE'])
         rows = cursor.fetchall()
     return rows

@@ -1,8 +1,8 @@
 from django.test import testcases
 import unittest
 from unittest.mock import patch, MagicMock
-from src.spotify.spotify import get_spotify_data
-from src.youtube.youtube import download_song_from_youtube
+from ..src.spotify.spotify import get_spotify_data
+from ..src.youtube.youtube import download_song_from_youtube
 from main import tracks, logger
 
 class TestMain(unittest.TestCase):

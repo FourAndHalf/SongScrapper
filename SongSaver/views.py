@@ -20,6 +20,24 @@ pretty_errors.configure(
 def startup_page(request):
     return render(request, 'loader.html')
 
+def dashboard_page(request):
+    return render(request, 'home.html')
+
+def listing_page(request):
+    return render(request, 'listing.html')
+
+def fav_listing_page(request):
+    return render(request, 'fav_listing.html')
+
+def codes_page(request):
+    return render(request, 'codes.html')
+
+def user_page(request):
+    return render(request, 'user.html')
+
+def create_link_page(request):
+    return render(request, 'link.html')
+
 def create_playlist(request):
     if request.method == 'POST':
         form = SpotifyLinkForm(request.POST)

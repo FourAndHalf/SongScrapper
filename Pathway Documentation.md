@@ -59,3 +59,5 @@
 4. An user login page / registration page if the user wants to download playlists
 5. A listing page of the songs / playlists created by the user, when clicking on one of them shows the songs in that list
 6. Another listing of the popular songs / playlists as inputted by the user
+7. Added logo for the website
+8. Thought of idea of creating a course for powerful web designs

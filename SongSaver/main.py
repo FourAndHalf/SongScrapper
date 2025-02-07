@@ -1,10 +1,8 @@
 from SpotifyDownloader.logging_config import logger
-from src.utils.utils import load_admin_config
-from src.spotify.spotify import get_spotify_data
-from src.youtube.youtube import download_song_from_youtube
+from .src.utils.utils import load_admin_config
+from .src.spotify.spotify import get_spotify_data
+from .src.youtube.youtube import download_song_from_youtube
 
-api_key = load_admin_config('api_key')
-rate_limit = load_admin_config('rate_limit')
 environment = load_admin_config('environment')
 
 url = ""

@@ -1,13 +1,13 @@
 from django.test import testcases
 import unittest
 from unittest.mock import patch, MagicMock
-from ..src.spotify.spotify import get_spotify_data
-from ..src.youtube.youtube import download_song_from_youtube
-from main import tracks, logger
+from SongSaver.src.spotify.spotify import get_spotify_data
+from SongSaver.src.youtube.youtube import download_song_from_youtube
+from SongSaver.main import tracks, logger
 
 class TestMain(unittest.TestCase):
 
-    @patch('src.spotify.spotify.get_spotify_data')
+    @patch('SongSaver.main.spotify.get_spotify_data')
     def test_valid_spotify_track_url(self, mock_get_spotify_data):
         """Test processing a valid Spotify track URL"""
         mock_get_spotify_data.return_value = [
@@ -26,7 +26,7 @@ class TestMain(unittest.TestCase):
         self.assertEqual(result[0]["title"], "Never Gonna Give You Up")
         self.assertEqual(result[0]["artist"], "Rick Astley")
 
-    @patch('src.spotify.spotify.get_spotify_data')
+    @patch('SongSaver.main.get_spotify_data')
     def test_valid_spotify_playlist_url(self, mock_get_spotify_data):
         """Test processing a valid Spotify playlist URL"""
         mock_get_spotify_data.return_value = [
@@ -40,7 +40,7 @@ class TestMain(unittest.TestCase):
         self.assertEqual(result[0]["title"], "Song 1")
         self.assertEqual(result[1]["title"], "Song 2")
 
-    @patch('src.spotify.spotify.get_spotify_data')
+    @patch('SongSaver.main.get_spotify_data')
     def test_invalid_spotify_url(self, mock_get_spotify_data):
         """Test handling of an invalid Spotify URL"""
         mock_get_spotify_data.return_value = {"error": "Invalid Spotify URL"}
@@ -48,9 +48,10 @@ class TestMain(unittest.TestCase):
         result = get_spotify_data("https://example.com/invalid")
 
         self.assertIn("error", result)
-        self.assertEqual(result["error"], "Invalid Spotify URL")
+        self.assertEqual(result["error"], "Invalid Spotify URL. Only track and playlist URLs are supported.")
 
-    @patch('src.youtube.youtube.download_song_from_youtube')
+
+    @patch('SongSaver.main.download_song_from_youtube')
     def test_download_song_success(self, mock_download):
         """Test successful song download from YouTube"""
         mock_download.return_value = "Never Gonna Give You Up - Rick Astley.mp3"
@@ -59,7 +60,7 @@ class TestMain(unittest.TestCase):
 
         self.assertEqual(result, "Never Gonna Give You Up - Rick Astley.mp3")
 
-    @patch('src.youtube.youtube.download_song_from_youtube')
+    @patch('SongSaver.main.download_song_from_youtube')
     def test_download_song_failure(self, mock_download):
         """Test failed song download from YouTube"""
         mock_download.return_value = None

@@ -1,27 +1,41 @@
+#region Declarations
+
 import pretty_errors
 
 from django.shortcuts import render, redirect
 from django.utils.timezone import now
 from SpotifyDownloader.logging_config import logger
-from spotipy import Spotify
-from spotipy.oauth2 import SpotifyClientCredentials
 from .forms import SpotifyLinkForm
-from .models import Playlist
+from .src.utils.utils import load_admin_config
 
-pretty_errors.configure(
-    filename_display=pretty_errors.FILENAME_EXTENDED,
-    line_number_first=True,
-    display_link=True,
-    lines_before=2,
-    lines_after=2,
-    code_color='yellow',
-)
+#endregion
+
+#region Configuration
+
+environment = load_admin_config('environment')
+
+if environment == "TEST":
+    pretty_errors.configure(
+        filename_display=pretty_errors.FILENAME_EXTENDED,
+        line_number_first=True,
+        display_link=True,
+        lines_before=2,
+        lines_after=2,
+        code_color='yellow',
+    )
+
+#endregion
+
+#region Define Pages
 
 def startup_page(request):
     return render(request, 'loader.html')
 
+def pre_dashboard_page(request):
+    return render(request, 'pre_dashboard.html')
+
 def dashboard_page(request):
-    return render(request, 'home.html')
+    return render(request, 'dashboard.html')
 
 def listing_page(request):
     return render(request, 'listing.html')
@@ -37,6 +51,8 @@ def user_page(request):
 
 def create_link_page(request):
     return render(request, 'link.html')
+
+#endregion
 
 def create_playlist(request):
     if request.method == 'POST':

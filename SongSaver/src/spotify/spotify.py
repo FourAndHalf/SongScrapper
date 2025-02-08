@@ -1,7 +1,7 @@
-import spotipy
-import re
-from spotipy.oauth2 import SpotifyClientCredentials
 import os
+import re
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 from SpotifyDownloader.logging_config import logger
 from ..utils.validators import is_spotify_url

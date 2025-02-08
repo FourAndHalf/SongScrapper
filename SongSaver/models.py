@@ -1,5 +1,11 @@
+#region Declarations
+
 from django.db import models
 from django.contrib.auth.models import User
+
+#endregion
+
+#region Dropdown Models
 
 class Artist(models.Model):
     code = models.CharField(max_length=12, null=False, blank=False, default="100")
@@ -15,6 +21,10 @@ class Genre(models.Model):
     def __str__(self):
         return self.code
 
+#endregion
+
+#region Playlist 
+
 class Playlist(models.Model):
     link = models.URLField(max_length=4000, null=False, blank=False)
     playlist_name = models.CharField(max_length=240)
@@ -29,3 +39,5 @@ class Playlist(models.Model):
 
     class Meta:
         ordering = ['-created_at']  
+
+#endregion

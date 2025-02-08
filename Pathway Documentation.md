@@ -61,3 +61,9 @@
 6. Another listing of the popular songs / playlists as inputted by the user
 7. Added logo for the website
 8. Thought of idea of creating a course for powerful web designs
+
+08/02/2025
+
+1. Created the function in serializers.py to serialize the json and push data
+2. Added a preloader page for the website and selected some animations for them
+3. Have to set some ease-ness in going to the page

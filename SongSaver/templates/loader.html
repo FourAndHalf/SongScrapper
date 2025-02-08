@@ -30,8 +30,17 @@
     <script>
       window.onload = function () {
         setTimeout(function () {
-          // document.getElementById("loader").style.display = "none"; document.getElementById("content").style.display = "block";
-        }, 5000);
+          //          document.querySelectorAll(".banter-loader__box").forEach((box) => {
+          //            box.style.animation = "none";
+          //            box.style.transform = "none";
+          //          });
+
+          document.getElementById("loader").classList.add("fade-out");
+
+          setTimeout(function () {
+            window.location.href = "{% url 'Pre-Dashboard' %}";
+          }, 2000);
+        }, 1000);
       };
     </script>
   </body>

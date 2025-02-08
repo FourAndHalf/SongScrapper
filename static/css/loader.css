@@ -1,6 +1,24 @@
+
 body {
   background: #000;
   text-align: center;
+}
+
+.loader-container {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+    filter: blur(5px);
+    opacity: 0 ease-out;
+    pointer-events: none; 
 }
 
 .banter-loader {

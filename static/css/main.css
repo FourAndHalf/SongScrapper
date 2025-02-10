@@ -1,0 +1,20 @@
+/* ========== CURSOR MOVEMENT ========== */
+
+html, body {
+    cursor: none; 
+}
+
+.mf-cursor {
+    width: 20px;  /* Cursor size */
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* Light transparent cursor */
+    border-radius: 50%;
+    mix-blend-mode: difference; /* Invert colors on hover */
+    transition: transform 0.1s ease-out;
+}
+
+.mf-cursor.-pointer {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 0, 0, 0.5); /* Change color when hovering over links */
+}

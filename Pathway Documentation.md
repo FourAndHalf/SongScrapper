@@ -67,3 +67,7 @@
 1. Created the function in serializers.py to serialize the json and push data
 2. Added a preloader page for the website and selected some animations for them
 3. Have to set some ease-ness in going to the page
+
+11/02/2025
+
+1. Created dashboard page

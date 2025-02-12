@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load static %}
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrapper</title>
+    <link rel="icon" type="image/jpeg" href="{% static 'image/logo.jpeg' %}" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
     />
   </head>
   <body>
@@ -36,14 +36,9 @@
 
         <div class="col-md-6">
           <label for="inputGenres" class="form-label">Select Genres</label>
-          <select
-            class="form-control"
-            id="inputGenres"
-            name="genres[]"
-            multiple
-          >
-            {% for genre in genres %}
-            <option value="{{ genre }}">{{ genre }}</option>
+          <select name="genre" id="inputGenres" class="form-control" multiple>
+            {% for code, desc in form.genre.field.choices %}
+            <option value="{{ code }}">{{ desc }}</option>
             {% endfor %}
           </select>
         </div>
@@ -51,13 +46,13 @@
         <div class="col-md-6">
           <label for="inputArtists" class="form-label">Select Artists</label>
           <select
-            class="form-control"
+            name="curated_artists"
             id="inputArtists"
-            name="artists[]"
+            class="form-control"
             multiple
           >
-            {% for artist in artists %}
-            <option value="{{ artist }}">{{ artist }}</option>
+            {% for code, desc in form.curated_artists.field.choices %}
+            <option value="{{ code }}">{{ desc }}</option>
             {% endfor %}
           </select>
         </div>

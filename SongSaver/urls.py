@@ -13,6 +13,7 @@ urlpatterns = [
     path('dashboard', views.dashboard_page, name='Dashboard'),
     path('list', views.listing_page, name='Tracks'),
     path('fav_list', views.fav_listing_page, name='Ranked'),
+    path('create_link', views.create_link_page, name="Link"),
 ]
 
 #endregion

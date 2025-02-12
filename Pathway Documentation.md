@@ -71,3 +71,7 @@
 11/02/2025
 
 1. Created dashboard page
+
+12/02/2025
+
+1. Trying to get the data from the database to populate the dropdown

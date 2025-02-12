@@ -26,7 +26,7 @@
       <br />
     </div>
     <p>
-      <a href="https://github.com/FourAndHalf">
+      <a target="_blank" href="https://github.com/FourAndHalf">
         <span>FourAndHalf</span>
       </a>
     </p>
@@ -218,8 +218,20 @@
   </body>
 
   <script>
-    document.addEventListener("click", function () {
-      window.location.href = "{% url 'Dashboard' %}";
+    document.addEventListener("DOMContentLoaded", function () {
+      const redirectUrl = "{% url 'Dashboard' %}";
+
+      document.addEventListener("click", function (event) {
+        let targetElement = event.target;
+        while (targetElement != null) {
+          if (targetElement.tagName === "A") {
+            return;
+          }
+          targetElement = targetElement.parentElement;
+        }
+
+        window.location.href = redirectUrl;
+      });
     });
   </script>
 </html>

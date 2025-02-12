@@ -50,25 +50,11 @@ def user_page(request):
     return render(request, 'user.html')
 
 def create_link_page(request):
-    return render(request, 'link.html')
+    return render_create_link(request)
 
 #endregion
 
-def create_playlist(request):
-    if request.method == 'POST':
-        form = SpotifyLinkForm(request.POST)
-        if form.is_valid():
-            post_data(form)
-            return redirect('LinkListing')
-    else:
-        form = SpotifyLinkForm()
+def render_create_link(request):
+    form = SpotifyLinkForm()  
+    return render(request, 'link.html', {'form': form})
 
-    return render(request, "link.html", {'form': form})
-
-
-def post_data(form):
-    playlist = form.save(commit=True)
-    playlist.created_by = "JINSON"
-    playlist.created_at = now()
-    playlist.save()
-    form.save_m2m()

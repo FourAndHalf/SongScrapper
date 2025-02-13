@@ -27,8 +27,6 @@ if environment == "TEST":
 artists=fetch_code_by_type("ARTIST")
 genres=fetch_code_by_type("GENRE")
 
-
-
 class SpotifyLinkForm(forms.ModelForm):
     curated_artists = forms.MultipleChoiceField(
         choices=list(artists),
@@ -36,13 +34,11 @@ class SpotifyLinkForm(forms.ModelForm):
         required=True,
     )
     genre = forms.MultipleChoiceField(
-        choices=[(code, desc) for code, desc in genres],
+        choices=list(genres),
         widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
         required=True,
     )
 
-
-
-class Meta:
-    model = Playlist
-    fields = [ 'link', 'playlist_name', 'curated_artists', 'genre', 'songs_count' ]
+    class Meta:
+        model = Playlist
+        fields = [ 'link', 'playlist_name', 'curated_artists', 'genre', 'songs_count' ]

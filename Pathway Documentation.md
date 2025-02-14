@@ -75,3 +75,7 @@
 12/02/2025
 
 1. Trying to get the data from the database to populate the dropdown
+
+13/02/2025
+
+1. Created the post method for saving the playlist

@@ -79,3 +79,7 @@
 13/02/2025
 
 1. Created the post method for saving the playlist
+
+15/02/2025
+
+1. Changed the logo of the project

@@ -1,9 +1,11 @@
 # Database Libraries
 asyncpg==0.30.0
 dj_database_url==2.3.0
+djangorestframework
 
 # Web Framework
 Django==5.0.2 
+celery
 
 # Logging & Error Handling
 pretty_errors==1.2.25

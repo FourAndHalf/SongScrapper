@@ -2,7 +2,6 @@
 
 import pretty_errors
 
-from django.db import connection
 from django import forms
 from .models import Playlist, Artist, Genre
 from .src.database.queries.codes_manager import fetch_code_by_type

@@ -1,7 +1,6 @@
 #region Declarations
 
 from django.db import models
-from django.contrib.auth.models import User
 
 #endregion
 
@@ -36,9 +35,9 @@ class Playlist(models.Model):
     playlist_name = models.CharField(max_length=240)
     curated_artists = models.ManyToManyField('Artist') 
     genre = models.ManyToManyField('Genre')
-    songs_count = models.PositiveIntegerField()
+    songs_count = models.PositiveIntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.CharField(max_length=12)
 
     def __str__(self):
         return self.playlist_name

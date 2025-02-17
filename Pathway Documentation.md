@@ -83,3 +83,8 @@
 15/02/2025
 
 1. Changed the logo of the project
+
+17/02/2025
+
+1. Best way to move forward is to recreate the website with minimal controls and needs.
+2. Create only a single dashboard and download page and maybe a listing page to show the top tracks in spotify

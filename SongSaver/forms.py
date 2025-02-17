@@ -3,8 +3,6 @@
 import pretty_errors
 
 from django import forms
-from .models import Playlist, Artist, Genre
-from .src.database.queries.codes_manager import fetch_code_by_type
 from .src.utils.utils import load_admin_config
 
 #endregion
@@ -23,21 +21,7 @@ if environment == "TEST":
         code_color='yellow',
     )
 
-artists=fetch_code_by_type("ARTIST")
-genres=fetch_code_by_type("GENRE")
+#endregion
 
 class SpotifyLinkForm(forms.ModelForm):
-    curated_artists = forms.MultipleChoiceField(
-        choices=list(artists),
-        widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
-        required=True,
-    )
-    genre = forms.MultipleChoiceField(
-        choices=list(genres),
-        widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
-        required=True,
-    )
-
-    class Meta:
-        model = Playlist
-        fields = [ 'link', 'playlist_name', 'curated_artists', 'genre', 'songs_count' ]
+    link = forms.URLField(required=True)

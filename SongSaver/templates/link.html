@@ -17,11 +17,6 @@
         {% csrf_token %}
 
         <div class="col-md-6">
-          <label for="inputName" class="form-label">Name</label>
-          <input type="text" class="form-control" id="inputName" name="playlist_name" />
-        </div>
-
-        <div class="col-md-6">
           <label for="inputLink" class="form-label"
             >Spotify Playlist Link</label
           >
@@ -32,29 +27,6 @@
             name="link"
             placeholder="Enter Spotify Playlist URL"
           />
-        </div>
-
-        <div class="col-md-6">
-          <label for="inputGenres" class="form-label">Select Genres</label>
-          <select name="genre" id="inputGenres" class="form-control" multiple>
-            {% for code, desc in form.genre.field.choices %}
-            <option value="{{ code }}">{{ desc }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="col-md-6">
-          <label for="inputArtists" class="form-label">Select Artists</label>
-          <select
-            name="curated_artists"
-            id="inputArtists"
-            class="form-control"
-            multiple
-          >
-            {% for code, desc in form.curated_artists.field.choices %}
-            <option value="{{ code }}">{{ desc }}</option>
-            {% endfor %}
-          </select>
         </div>
 
         <div class="col-12">

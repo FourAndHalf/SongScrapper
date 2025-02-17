@@ -2,11 +2,10 @@
 
 import pretty_errors
 
-from django.shortcuts import render, redirect
-from django.utils.timezone import now
-from SpotifyDownloader.logging_config import logger
+from django.shortcuts import render
 from .forms import SpotifyLinkForm
 from .src.utils.utils import load_admin_config
+from tasks import process_playlist
 
 #endregion
 
@@ -60,15 +59,12 @@ def render_create_link(request):
 
         if form.is_valid():
             return playlist_post(form)
-    form = SpotifyLinkForm()
-    return render(request, 'link.html', {'form': form})
+    else:
+        form = SpotifyLinkForm()
+        return render(request, 'link.html', {'form': form})
 
 
 def playlist_post(form):
-    playlist = form.save(commit=False)
-    playlist.created_by = "JINSON"
-    playlist.created_at = now()
-    playlist.save()
-    form.save_m2m()
-    return redirect('listing_page')
+    data = form.cleaned_data['link']
 
+    process_playlist(data)

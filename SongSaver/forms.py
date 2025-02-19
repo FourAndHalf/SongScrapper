@@ -23,5 +23,5 @@ if environment == "TEST":
 
 #endregion
 
-class SpotifyLinkForm(forms.ModelForm):
-    link = forms.URLField(required=True)
+class SpotifyLinkForm(forms.Form):
+    link = forms.URLField(label="Spotify Link", required=True)

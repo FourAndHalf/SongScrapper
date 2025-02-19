@@ -5,7 +5,7 @@ import pretty_errors
 from django.shortcuts import render
 from .forms import SpotifyLinkForm
 from .src.utils.utils import load_admin_config
-from tasks import process_playlist
+from .tasks import process_playlist
 
 #endregion
 
@@ -58,6 +58,7 @@ def render_create_link(request):
         form = SpotifyLinkForm(request.POST)
 
         if form.is_valid():
+            link = form.cleaned_data["link"]
             return playlist_post(form)
     else:
         form = SpotifyLinkForm()

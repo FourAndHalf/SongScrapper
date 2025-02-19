@@ -38,6 +38,16 @@ def download_song_from_youtube(song_name, artist):
         logger.error(f"Error downloading from YouTube: {ex}")
         return None
 
+def download_song_from_youtube(link):
+    """      Download an MP3 file of the song using YouTube Link      """
+
+    logger.info(f"Before downloading track with youtube link: {link}")
+
+    try:
+        return download_song_from_youtube_snippet(link)
+    except Exception as ex:
+        logger.error(f"Error downloading from YouTube: {ex}")
+        return None
 
 def download_song_from_youtube_snippet(song_name, artist):
     search_query = f"{song_name} {artist} official audio"
@@ -63,3 +73,31 @@ def download_song_from_youtube_snippet(song_name, artist):
     logger.info(f"After downloading track: {output_path.with_suffix('.mp3')}")
 
     return str(output_path.with_suffix('.mp3'))
+
+def download_song_from_youtube_snippet(link):
+    download_folder = get_download_folder()
+    
+    output_path = download_folder/"%(title)s.%(ext)s"
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '320',
+        }],
+        'outtmpl': str(output_path),
+    }
+
+    logger.info(f"Before starting downloading track: {link}")
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([link])
+
+    info = ydl.extract_info(link, download=False)
+    downloaded_file = download_folder / f"{info['title']}.mp3"
+
+
+    logger.info(f"After downloading track: {downloaded_file}")
+
+    return str(downloaded_file)

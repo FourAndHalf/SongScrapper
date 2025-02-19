@@ -88,3 +88,9 @@
 
 1. Best way to move forward is to recreate the website with minimal controls and needs.
 2. Create only a single dashboard and download page and maybe a listing page to show the top tracks in spotify
+3. Selected 'sonner' for the notification system in the application
+
+19/02/2025
+
+1. Corrected the debugging for the application
+2. Have to setup sonner for notification system

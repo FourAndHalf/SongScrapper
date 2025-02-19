@@ -94,3 +94,4 @@
 
 1. Corrected the debugging for the application
 2. Have to setup sonner for notification system
+3. Completed debugging of spotify track link -- Works

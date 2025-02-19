@@ -1,6 +1,7 @@
 import os
 import re
 import spotipy
+from celery import shared_task
 from spotipy.oauth2 import SpotifyClientCredentials
 from dotenv import load_dotenv
 from SpotifyDownloader.logging_config import logger
@@ -17,6 +18,7 @@ sp = spotipy.Spotify(
 
 SPOTIFY_URL_PATTERN = re.compile(r"https?://open\.spotify\.com/(track|playlist)/([a-zA-Z0-9]+)")
 
+@shared_task
 def get_spotify_data(url):
     """     Determine url is a playlist / track and behave accordingly      """
 
@@ -45,7 +47,7 @@ def get_spotify_data(url):
 
         elif item_type == "playlist":
             try: 
-                logger.info("Before fetching playlist track data...")
+                logger.info("Before fetching playlist playlist data...")
 
                 playlist = sp.playlist_tracks(item_id)
 
@@ -54,8 +56,8 @@ def get_spotify_data(url):
                     tracks.append(get_track_info(track))
 
             except Exception as ex:
-                logger.error(f"Failed to fetch track details: {ex}")
-                return {"error": "Failed to fetch track details"}
+                logger.error(f"Failed to fetch playlist details: {ex}")
+                return {"error": "Failed to fetch playlist details"}
 
         return tracks
     

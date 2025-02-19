@@ -59,10 +59,12 @@ def render_create_link(request):
 
         if form.is_valid():
             link = form.cleaned_data["link"]
-            return playlist_post(form)
+            playlist_post(form)
+
     else:
         form = SpotifyLinkForm()
-        return render(request, 'link.html', {'form': form})
+
+    return render(request, 'link.html', {'form': form})
 
 
 def playlist_post(form):

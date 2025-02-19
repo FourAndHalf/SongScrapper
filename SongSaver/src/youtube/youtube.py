@@ -1,9 +1,11 @@
 import yt_dlp
 import sys
 import os
+from celery import shared_task
 from pathlib import Path
 from SpotifyDownloader.logging_config import logger
 
+@shared_task
 def get_download_folder():
     """Determine the appropriate Downloads folder path based on the OS."""
     
@@ -27,17 +29,19 @@ def get_download_folder():
     
     return music_path
 
+@shared_task
 def download_song_from_youtube(song_name, artist):
     """      Download an MP3 file of the song from YouTube.      """
 
     logger.info(f"Before setting search query for track: {song_name} - {artist}")
 
     try:
-        return download_song_from_youtube_snippet(song_name, artist)
+        return download_song_from_youtube_search(song_name, artist)
     except Exception as ex:
         logger.error(f"Error downloading from YouTube: {ex}")
         return None
 
+@shared_task
 def download_song_from_youtube(link):
     """      Download an MP3 file of the song using YouTube Link      """
 
@@ -49,7 +53,8 @@ def download_song_from_youtube(link):
         logger.error(f"Error downloading from YouTube: {ex}")
         return None
 
-def download_song_from_youtube_snippet(song_name, artist):
+@shared_task
+def download_song_from_youtube_search(song_name, artist):
     search_query = f"{song_name} {artist} official audio"
     download_folder = get_download_folder()
     
@@ -74,6 +79,7 @@ def download_song_from_youtube_snippet(song_name, artist):
 
     return str(output_path.with_suffix('.mp3'))
 
+@shared_task
 def download_song_from_youtube_snippet(link):
     download_folder = get_download_folder()
     

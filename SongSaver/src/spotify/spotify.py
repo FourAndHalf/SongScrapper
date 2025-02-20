@@ -16,99 +16,84 @@ sp = spotipy.Spotify(
     )
 )
 
-SPOTIFY_URL_PATTERN = re.compile(r"https?://open\.spotify\.com/(track|playlist|album)/([a-zA-Z0-9]+)")
 
 @shared_task
-def get_spotify_data(url):
-    """     Determine url is a playlist / track and behave accordingly      """
+def get_spotify_track_data(track_id):
+    """     Get Track Data      """
 
-    tracks = []
-    song_count = 0    
-
-    if not is_spotify_url(url):
-        logger.warning(f"Invalid spotify url provided: {url}")
-        return {"error": "Invalid Spotify URL. Only track and playlist URLs are supported."}
-    
     try:
-        logger.info(f"Before starting matching url data: {url}")
+        logger.info("Before fetching track data...")
 
-        match = SPOTIFY_URL_PATTERN.match(url)
-        item_type, item_id = match.groups()
+        track_dtl = sp.track(track_id)
+
+        return {
+            "type": "track",
+            "title": track_dtl["name"],
+            "artist": track_dtl["artists"][0]["name"],
+            "album": track_dtl["album"]["name"],
+            "release_date": track_dtl["album"]["release_date"],
+            "spotify_url": track_dtl["external_urls"]["spotify"]
+        }
+
+    except Exception as ex:
+        logger.error(f"Failed to fetch track details: {ex}")
+        return {"error": "Failed to fetch track details"}
+
+@shared_task
+def get_spotify_playlist_data(playlist_id):
+    try: 
+        logger.info("Before fetching playlist track data...")
+
+        tracks = []
+        playlist = sp.playlist_tracks(playlist_id)
+
+        for item in playlist["items"]:
+            track = item["track"]
+            track_dtl = sp.track(track["id"])
         
-        if item_type == "track":
-            try:
-                logger.info("Before fetching track data...")
+            track = {
+                "type": "playlist",
+                "title": track_dtl["name"],
+                "artist": track_dtl["artists"][0]["name"],
+                "album": track_dtl["album"]["name"],
+                "release_date": track_dtl["album"]["release_date"],
+                "spotify_url": track_dtl["external_urls"]["spotify"]
+            }
 
-                track_dtl = sp.track(item_id)
+            tracks.append(track) 
+        
+        return tracks
 
-                track = {
-                    "type": "track",
-                    "title": track_dtl["name"],
-                    "artist": track_dtl["artists"][0]["name"],
-                    "album": track_dtl["album"]["name"],
-                    "release_date": track_dtl["album"]["release_date"],
-                    "spotify_url": track_dtl["external_urls"]["spotify"]
-                }
+    except Exception as ex:
+        logger.error(f"Failed to fetch playlist details: {ex}")
+        return {"error": "Failed to fetch playlist details"}
 
-                tracks.append(track)
+@shared_task
+def get_spotify_album_data(album_id):
+    try: 
+        logger.info("Before fetching album track data...")
 
-            except Exception as ex:
-                logger.error(f"Failed to fetch track details: {ex}")
-                return {"error": "Failed to fetch track details"}
+        tracks = []
+        album = sp.album_tracks(album_id)
 
-        elif item_type == "playlist":
-            try: 
-                logger.info("Before fetching playlist track data...")
+        for item in album["items"]:
+            track_id = item["id"]
+            track_dtl = sp.track(track_id)
 
-                playlist = sp.playlist_tracks(item_id)
+            track = {
+                "type": "playlist",
+                "title": track_dtl["name"],
+                "artist": track_dtl["artists"][0]["name"],
+                "album": track_dtl["album"]["name"],
+                "release_date": track_dtl["album"]["release_date"],
+                "spotify_url": track_dtl["external_urls"]["spotify"]
+            }
 
-                for item in playlist["items"]:
-                    track = item["track"]
-                    track_dtl = sp.track(track["id"])
-
-                    track = {
-                        "type": "playlist",
-                        "title": track_dtl["name"],
-                        "artist": track_dtl["artists"][0]["name"],
-                        "album": track_dtl["album"]["name"],
-                        "release_date": track_dtl["album"]["release_date"],
-                        "spotify_url": track_dtl["external_urls"]["spotify"]
-                    }
-
-                    tracks.append(track)
-
-            except Exception as ex:
-                logger.error(f"Failed to fetch playlist details: {ex}")
-                return {"error": "Failed to fetch playlist details"}
-
-        elif item_type == "album":
-            try: 
-                logger.info("Before fetching album track data...")
-
-                album = sp.album_tracks(item_id)
-
-                for item in album["items"]:
-                    track = item["track"]
-                    track_dtl = sp.track(track["id"])
-
-                    track = {
-                        "type": "album",
-                        "title": track_dtl["name"],
-                        "artist": track_dtl["artists"][0]["name"],
-                        "album": track_dtl["album"]["name"],
-                        "release_date": track_dtl["album"]["release_date"],
-                        "spotify_url": track_dtl["external_urls"]["spotify"]
-                    }
-
-                    tracks.append(track)
-
-            except Exception as ex:
-                logger.error(f"Failed to fetch album details: {ex}")
-                return {"error": "Failed to fetch album details"}
+            tracks.append(track)
 
         return tracks
-    
+
     except Exception as ex:
-        logger.error(f"Error occurred while fetching spotify details: {ex}")
-        return None
+        logger.error(f"Failed to fetch album details: {ex}")
+        return {"error": "Failed to fetch album details"}
 

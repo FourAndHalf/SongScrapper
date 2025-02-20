@@ -1,7 +1,7 @@
 import re
 from celery import shared_task
 from .src.utils.validators import is_spotify_url, is_youtube_url
-from .src.youtube.youtube import download_song_from_youtube
+from .src.youtube.youtube import download_song_from_youtube_link, download_song_from_youtube_search
 from .src.spotify.spotify import get_spotify_data
 from SpotifyDownloader.logging_config import logger
 
@@ -14,7 +14,7 @@ def process_playlist(self, data):
 
         if is_youtube_url(link):
             logger.info(f"Processing youtube link: {link}")
-            download_song_from_youtube.delay(link)
+            download_song_from_youtube_link.delay(link)
             return {"status": "processing", "source": "YouTube"}
         elif is_spotify_url(link):
             logger.info(f"Processing spotify link: {link}")
@@ -24,12 +24,19 @@ def process_playlist(self, data):
                 logger.warning(f"No tracks found for spotify link: {link}")
                 return {"status": "failed", "error": "No tracks found"}
 
-            if tracks["type"] == "track":
+            if tracks[0]["type"] == "track":
                 song_name = tracks["title"]
                 song_name = re.sub(r'[^\w\s]', '', song_name).strip()
                 artist = tracks["artist"]
 
-                downloadPath = download_song_from_youtube(song_name, artist)
+                download_song_from_youtube_search.delay(song_name, artist)
+            elif tracks[0]["type"] in ["playlist", "album"]:
+                for track in tracks:
+                    song_name = track["title"]
+                    song_name = re.sub(r'[^\w\s]', '', song_name).strip()
+                    artist = track["artist"]
+
+                    download_song_from_youtube_search.delay(song_name, artist)
             return {"status": "processing", "source": "Spotify"}
 
         else:

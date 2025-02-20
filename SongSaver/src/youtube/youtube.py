@@ -30,7 +30,7 @@ def get_download_folder():
     return music_path
 
 @shared_task
-def download_song_from_youtube(song_name, artist):
+def download_song_from_youtube_search(song_name, artist):
     """      Download an MP3 file of the song from YouTube.      """
 
     logger.info(f"Before setting search query for track: {song_name} - {artist}")
@@ -42,13 +42,13 @@ def download_song_from_youtube(song_name, artist):
         return None
 
 @shared_task
-def download_song_from_youtube(link):
+def download_song_from_youtube_link(link):
     """      Download an MP3 file of the song using YouTube Link      """
 
     logger.info(f"Before downloading track with youtube link: {link}")
 
     try:
-        return download_song_from_youtube_snippet(link)
+        return download_song_from_youtube_link(link)
     except Exception as ex:
         logger.error(f"Error downloading from YouTube: {ex}")
         return None
@@ -80,7 +80,7 @@ def download_song_from_youtube_search(song_name, artist):
     return str(output_path.with_suffix('.mp3'))
 
 @shared_task
-def download_song_from_youtube_snippet(link):
+def download_song_from_youtube_link(link):
     download_folder = get_download_folder()
     
     output_path = download_folder/"%(title)s.%(ext)s"

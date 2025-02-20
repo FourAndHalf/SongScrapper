@@ -6,6 +6,7 @@ djangorestframework
 # Web Framework
 Django==5.0.2 
 celery
+rabbitmq-server
 
 # Logging & Error Handling
 pretty_errors==1.2.25

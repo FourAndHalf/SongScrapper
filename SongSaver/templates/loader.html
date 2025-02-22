@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scrapper</title>
+    <title>Spotify Scrapper</title>
     <link rel="icon" type="image/svg" href="{% static 'image/logo.svg' %}" />
     <link
       rel="stylesheet"
@@ -146,10 +146,7 @@
     <script>
       window.onload = function () {
         setTimeout(function () {
-          document.getElementById("loader").classList.add("fade-out");
-          setTimeout(function () {
-            window.location.href = "{% url 'Pre-Dashboard' %}";
-          }, 1500);
+            window.location.href = "{% url 'Dashboard' %}";
         }, 2000);
       };
     </script>

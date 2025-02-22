@@ -30,9 +30,6 @@ if environment == "TEST":
 def startup_page(request):
     return render(request, 'loader.html')
 
-def pre_dashboard_page(request):
-    return render(request, 'pre_dashboard.html')
-
 def dashboard_page(request):
     return render(request, 'dashboard.html')
 
@@ -41,12 +38,6 @@ def listing_page(request):
 
 def fav_listing_page(request):
     return render(request, 'fav_listing.html')
-
-def codes_page(request):
-    return render(request, 'codes.html')
-
-def user_page(request):
-    return render(request, 'user.html')
 
 def create_link_page(request):
     return render_create_link(request)

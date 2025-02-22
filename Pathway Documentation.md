@@ -95,3 +95,10 @@
 1. Corrected the debugging for the application
 2. Have to setup sonner for notification system
 3. Completed debugging of spotify track link -- Works
+
+22/02/2025
+
+1. Changed the loader animation
+2. Removed the unnecessary pre-loader animation
+3. Design the Dashboard page and let the download page lead to link page
+4. Have to optimize the site for AI Search engine optimization and normal search engine optimization

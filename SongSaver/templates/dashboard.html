@@ -12,17 +12,28 @@
       href="{% static 'css/dashboard.css' %}"
     />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+    <div id="layout-1" class="section">
+      <div id="layout-1.1">
+      </div>
+    </div>
+    <div id="layout-2" class="section">
+    </div>
+    <div id="layout-3" class="section">
+    </div>
+    </div>
+  </body>
   <script src="{% static 'js/dashboard.js' %}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const redirectUrl = "{% url 'Link' %}";
+   // document.addEventListener("DOMContentLoaded", function () {
+   //   const redirectUrl = "{% url 'Link' %}";
 
-      document.addEventListener("click", function () {
-        window.location.href = redirectUrl;
-      });
-    });
+   //   document.addEventListener("click", function () {
+   //     window.location.href = redirectUrl;
+   //   });
+   // });
   </script>
 </html>

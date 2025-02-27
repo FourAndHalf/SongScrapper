@@ -29,7 +29,7 @@ body {
 #layout-1 {
   width: 100%;
   height: 40vw;
-  background-image: url('../image/layout-1.jpg');
+  background-image: url('../image/layout-1-original.jpg');
   background-size: cover;
   background-position: center;
 }

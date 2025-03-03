@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="loader">
-      <div class="truckWrapper">
+      <div class="truckWrapper" id="truckWrapper">
         <div class="truckBody">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -146,8 +146,12 @@
     <script>
       window.onload = function () {
         setTimeout(function () {
-            window.location.href = "{% url 'Dashboard' %}";
-        }, 2000);
+          document.getElementById("truckWrapper").classList.add("filter");
+        }, 1500);
+
+        setTimeout(function () {
+          window.location.href = "{% url 'Dashboard' %}";
+        }, 2500);
       };
     </script>
   </body>

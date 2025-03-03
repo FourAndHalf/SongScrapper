@@ -11,9 +11,26 @@
       type="text/css"
       href="{% static 'css/dashboard.css' %}"
     />
+{% load static %}
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+
   </head>
   <body>
-    <div class="container">
+
+  <div class="container">
+    <!-- Navbar -->
+    <nav id="navbar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Menu Icon (Trigger Button) -->
+    <div id="menu-icon">&#9776;</div>
+
     <div id="layout-1" class="section">
       <div id="layout-1.1">
       </div>
@@ -24,16 +41,6 @@
     </div>
     </div>
   </body>
-  <script src="{% static 'js/dashboard.js' %}" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-  <script>
-   // document.addEventListener("DOMContentLoaded", function () {
-   //   const redirectUrl = "{% url 'Link' %}";
-
-   //   document.addEventListener("click", function () {
-   //     window.location.href = redirectUrl;
-   //   });
-   // });
-  </script>
 </html>

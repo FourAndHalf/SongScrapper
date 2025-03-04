@@ -6,17 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scrapper</title>
     <link rel="icon" type="image/svg" href="{% static 'image/logo.svg' %}" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/dashboard.css' %}"
-    />
-{% load static %}
-<script src="{% static 'js/dashboard.js' %}" defer></script>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}" />
   </head>
   <body>
-
   <div class="container">
     <!-- Navbar -->
     <nav id="navbar">
@@ -29,7 +21,16 @@
     </nav>
 
     <!-- Menu Icon (Trigger Button) -->
-    <div id="menu-icon">&#9776;</div>
+    <div class="action--menu" id="action--menu">
+      <svg width="3rem" height="3rem" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, -1, 0, 0)" stroke="#fff">
+        <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+          <path transform="translate(-2.4, -2.4), scale(1.7999999999999998)" fill="#63adc5" d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z" strokewidth="0"></path>
+        </g>
+        <g id="SVGRepo_iconCarrier"> 
+          <path d="M4 12H20M4 8H20M4 16H12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> 
+        </g>
+      </svg>
+    </div>
 
     <div id="layout-1" class="section">
       <div id="layout-1.1">
@@ -39,8 +40,27 @@
     </div>
     <div id="layout-3" class="section">
     </div>
-    </div>
-  </body>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuIcon = document.getElementById("action--menu");
+      const navbar = document.getElementById("navbar"); 
+
+    let isOpen = false;
+
+    menuIcon.addEventListener("click", function () {
+        if (!isOpen) {
+            gsap.to("#navbar", { right: 0, duration: 0.5, ease: "power2.out" });
+        } else {
+            gsap.to("#navbar", { right: "-250px", duration: 0.5, ease: "power2.in" });
+        }
+        isOpen = !isOpen;
+      });
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  </body>
 </html>

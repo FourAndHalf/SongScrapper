@@ -25,6 +25,19 @@ body {
   animation: fadeIn 1s ease-in;
 }
 
+.action--menu {
+  pointer-events: auto;
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  z-index: 1000;
+  background: none;
+}
+
+.menu--open .action--menu {
+  pointer-events: none;
+}
+
 /* Navbar */
 #navbar {
   position: fixed;
@@ -58,24 +71,10 @@ body {
   font-size: 18px;
 }
 
-/* Menu Icon */
-#menu-icon {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 30px;
-  cursor: pointer;
-  background: #333;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-}
-
 /* Show Navbar when Active */
 #navbar.active {
   right: 0;
 }
-
 
 .container {
   height: 100vh;

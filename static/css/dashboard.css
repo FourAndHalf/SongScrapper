@@ -52,9 +52,9 @@ body {
 #navbar {
   position: fixed;
   top: 0;
-  right: -250px;
-  /* Hidden off-screen */
-  width: 250px;
+  right: -100%;
+  width: 75%;
+  max-width: 250px;
   height: 100vh;
   background-color: #333;
   color: white;

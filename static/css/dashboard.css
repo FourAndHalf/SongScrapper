@@ -171,6 +171,20 @@ body {
   animation: animate 3s linear infinite;
 }
 
+@keyframes animate {
+  0% {
+    width: 0%;
+  }
+
+  50% {
+    width: 50%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 #layout-1_3 {
   font-size: 0.8rem;
   color: #fff;
@@ -187,34 +201,36 @@ body {
 
 #explore {
   font-size: 1.5rem;
-  color: #fafafa;
-  text-transform: uppercase;
+  color: #000;
+  font-family: monospace;
   padding: 10px 20px;
   border-radius: 10px;
   border: 2px solid #fafafa;
-  background: #252525;
+  background: #fff;
   box-shadow: 3px 3px #fafafa;
   cursor: pointer;
   margin: 35px 0;
 }
-
 #explore:active {
   box-shadow: none;
   transform: translate(3px, 3px);
 }
 
-@keyframes animate {
-  0% {
-    width: 0%;
-  }
-
-  50% {
-    width: 50%;
-  }
-
-  100% {
-    width: 100%;
-  }
+#download {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: monospace;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: transparent;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+  margin: 35px 0;
+}
+#download:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 }
 
 #layout-2 {

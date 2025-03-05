@@ -113,7 +113,7 @@ body {
 
 #layout-1_1_1 {
   text-align: center;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-family: "BANGERS", system-ui;
   color: #fff;
   font-weight: 700;
@@ -169,6 +169,38 @@ body {
   height: 100%;
   background: #fff;
   animation: animate 3s linear infinite;
+}
+
+#layout-1_3 {
+  font-size: 0.8rem;
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#layout-1_3_2 {
+  width: 65rem;
+  position: relative;
+}
+
+#explore {
+  font-size: 1.5rem;
+  color: #fafafa;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  background: #252525;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+  margin: 35px 0;
+}
+
+#explore:active {
+  box-shadow: none;
+  transform: translate(3px, 3px);
 }
 
 @keyframes animate {

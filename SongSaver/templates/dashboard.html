@@ -7,6 +7,10 @@
     <title>Scrapper</title>
     <link rel="icon" type="image/svg" href="{% static 'image/logo.svg' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   </head>
   <body>
   <div class="container">
@@ -31,9 +35,35 @@
         </g>
       </svg>
     </div>
+    <div class="action--close" id="action--close">
+      <svg width="3rem" height="3rem" viewBox="-7.2 -7.2 38.40 38.40" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)matrix(1, 0, 0, -1, 0, 0)" stroke="#ffffff">
+        <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+          <path transform="translate(-7.2, -7.2), scale(2.4)" fill="#63adc5" d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z" strokewidth="0"></path>
+        </g>
+        <g id="SVGRepo_iconCarrier">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#ffffff"></path>
+        </g>
+      </svg>
+    </div>
 
     <div id="layout-1" class="section">
-      <div id="layout-1.1">
+      <div id="layout-1_1_1">
+        <p> DISCOVER YOUR NEXT FAVORITE SONG TODAY </p>
+      </div>
+      <div id="layout-1_1_2">
+        <p> Download your favorite songs, paste in youtube / spotify link </p>
+      </div>
+      <br />
+      <div id="layout-1_2">
+        <div id="layout-1_2_1">
+        </div>
+        <div id="layout-1_2_2">
+          <input type="text" required="required">
+          <label></label>
+          <i></i>
+        </div>
+        <div id="layout-1_2_3">
+        </div>
       </div>
     </div>
     <div id="layout-2" class="section">
@@ -45,17 +75,23 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const menuIcon = document.getElementById("action--menu");
+      const closeIcon = document.getElementById("action--close");
       const navbar = document.getElementById("navbar"); 
 
-    let isOpen = false;
+      closeIcon.classList.add("hidden");
 
-    menuIcon.addEventListener("click", function () {
-        if (!isOpen) {
-            gsap.to("#navbar", { right: 0, duration: 0.5, ease: "power2.out" });
-        } else {
-            gsap.to("#navbar", { right: "-250px", duration: 0.5, ease: "power2.in" });
-        }
-        isOpen = !isOpen;
+      menuIcon.addEventListener("click", function () {
+        gsap.to("#navbar", { right: 0, duration: 0.5, ease: "power2.out" });
+        
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      });
+
+      closeIcon.addEventListener("click", function() {
+        gsap.to("#navbar", { right: "-250px", duration: 0.5, ease: "power2.in" });
+
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
       });
     });
   </script>

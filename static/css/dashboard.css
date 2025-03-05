@@ -25,17 +25,27 @@ body {
   animation: fadeIn 1s ease-in;
 }
 
-.action--menu {
+.action--menu,
+.action--close {
   pointer-events: auto;
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 1000;
   background: none;
 }
 
-.menu--open .action--menu {
+.hidden {
+  opacity: 0;
+  transform: scale(0.8);
   pointer-events: none;
+}
+
+.action--menu:not(.hidden),
+.action--close:not(.hidden) {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Navbar */
@@ -95,7 +105,84 @@ body {
   height: 40vw;
   background-image: url('../image/layout-1-original.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#layout-1_1_1 {
+  text-align: center;
+  font-size: 4rem;
+  font-family: "BANGERS", system-ui;
+  color: #fff;
+  font-weight: 700;
+}
+
+#layout-1_1_2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.2rem !important;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-weight: 700;
+}
+
+#layout-1_2 {
+  font-size: 0.8rem;
+  color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#layout-1_2_2 {
+  width: 65rem;
+  position: relative;
+}
+
+#layout-1_2_2 input {
+  width: 100%;
+  font-family: monospace;
+  font-size: 1rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #222;
+  padding: 8px;
+}
+
+#layout-1_2_2 i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+
+#layout-1_2_2 i:before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    width: 0%;
+  }
+
+  50% {
+    width: 50%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 #layout-2 {

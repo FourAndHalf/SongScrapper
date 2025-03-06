@@ -31,7 +31,17 @@ def startup_page(request):
     return render(request, 'loader.html')
 
 def dashboard_page(request):
-    return render(request, 'dashboard.html')
+    if request.method == 'POST':
+        form = SpotifyLinkForm(request.POST)
+
+        if form.is_valid():
+            link = form.cleaned_data["link"]
+            playlist_post(form)
+
+    else:
+        form = SpotifyLinkForm()
+
+    return render(request, 'dashboard.html', {'form': form})
 
 def listing_page(request):
     return render(request, 'listing.html')

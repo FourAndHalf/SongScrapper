@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  overflow: scroll;
 }
 
 @keyframes fadeIn {
@@ -72,13 +73,13 @@ body {
 }
 
 #navbar ul li {
-  margin: 15px 0;
+  margin: 2rem 0;
 }
 
 #navbar ul li a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 3rem;
 }
 
 /* Show Navbar when Active */
@@ -150,7 +151,7 @@ body {
   outline: none;
   border: none;
   color: #222;
-  padding: 8px;
+  padding: 0.1rem;
 }
 
 #layout-1_2_2 i {
@@ -158,7 +159,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 0.2rem;
   background: #ffffff;
 }
 
@@ -195,15 +196,17 @@ body {
 }
 
 #layout-1_3_2 {
-  width: 65rem;
-  position: relative;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 #explore {
   font-size: 1.5rem;
   color: #000;
   font-family: monospace;
-  padding: 10px 20px;
+  padding: 0.4rem 0.7rem;
   border-radius: 10px;
   border: 2px solid #fafafa;
   background: #fff;
@@ -211,6 +214,7 @@ body {
   cursor: pointer;
   margin: 35px 0;
 }
+
 #explore:active {
   box-shadow: none;
   transform: translate(3px, 3px);
@@ -220,7 +224,8 @@ body {
   font-size: 1.5rem;
   color: #fff;
   font-family: monospace;
-  padding: 10px 20px;
+  padding: 0.4rem 0.7rem;
+  margin: 0.5rem;
   border-radius: 10px;
   border: 2px solid #fafafa;
   background: transparent;
@@ -228,12 +233,14 @@ body {
   cursor: pointer;
   margin: 35px 0;
 }
+
 #download:active {
   box-shadow: none;
   transform: translate(3px, 3px);
 }
 
 #layout-2 {
+  display: none;
   width: 100%;
   height: 40vw;
   background-image: url('../image/layout-2-original.jpg');
@@ -242,9 +249,16 @@ body {
 }
 
 #layout-3 {
+  display: none;
   width: 100%;
   height: 40vw;
   background-image: url('../image/layout-3-original.jpg');
   background-size: cover;
   background-position: center;
+}
+
+#layout-4 {
+  width: 100%;
+  height: 20vw;
+  background: #fff;
 }

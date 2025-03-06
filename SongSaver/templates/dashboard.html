@@ -13,9 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   </head>
   <body>
-  <div class="container">
+    
+  <form class="row" method="post">
+      {% csrf_token %}
+    <div class="container">
     <!-- Navbar -->
-    <nav id="navbar">
+      <nav id="navbar">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
@@ -46,19 +49,19 @@
       </svg>
     </div>
 
-    <div id="layout-1" class="section">
-      <div id="layout-1_1_1">
-        <p> DISCOVER YOUR NEXT FAVORITE SONG TODAY </p>
-      </div>
-      <div id="layout-1_1_2">
-        <p> Download your favorite songs, paste in youtube / spotify link </p>
-      </div>
-      <br />
-      <div id="layout-1_2">
-        <div id="layout-1_2_1">
+      <div id="layout-1" class="section">
+        <div id="layout-1_1_1">
+          <p> DISCOVER YOUR NEXT FAVORITE SONG TODAY </p>
         </div>
-        <div id="layout-1_2_2">
-          <input type="text" required="required">
+        <div id="layout-1_1_2">
+          <p> Download your favorite songs, paste in youtube / spotify link </p>
+        </div>
+
+        <div id="layout-1_2">
+          <div id="layout-1_2_1">
+          </div>
+          <div id="layout-1_2_2">
+          <input type="text" required="required" name="link">
           <label></label>
           <i></i>
         </div>
@@ -70,17 +73,20 @@
         </div>
         <div id="layout-1_3_2">
           <button id="explore">Explore</button>
-          <button id="download">Download</button>
+          <button type="submit" id="download">Download</button>
         </div>
-        <div id="layout-1_3_3">
+          <div id="layout-1_3_3">
+        </div>
         </div>
       </div>
-    </div>
     <div id="layout-2" class="section">
     </div>
     <div id="layout-3" class="section">
     </div>
+    <div id="layout-4" class="section">
+    </div>
   </div>
+</form>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {

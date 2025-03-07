@@ -70,5 +70,4 @@ def render_create_link(request):
 
 def playlist_post(form):
     data = form.cleaned_data['link']
-
     process_playlist(data)

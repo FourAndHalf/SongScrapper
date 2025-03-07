@@ -268,7 +268,8 @@ body {
 
 #layout-4 {
   width: 100%;
-  min-height: 50vh;
+  min-height: 10vh;
+  max-height: 10vh;
   background: #fff;
   padding: 2rem 1rem;
 }

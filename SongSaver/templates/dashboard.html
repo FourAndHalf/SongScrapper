@@ -4,7 +4,26 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scrapper</title>
+    <title>Free Music Downloader - Download Songs from YouTube & Spotify</title>
+    <meta
+      name="description"
+      content="Download your favorite music for free from YouTube and Spotify. Easy-to-use music downloader for MP3 songs and music videos."
+    />
+    <meta
+      name="keywords"
+      content="free spotify download, youtube downloader, free music download, music video download, mp3 downloader, spotify to mp3, youtube to mp3"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta
+      property="og:title"
+      content="Free Music Downloader - Download Songs from YouTube & Spotify"
+    />
+    <meta
+      property="og:description"
+      content="Download your favorite music for free from YouTube and Spotify. Easy-to-use music downloader for MP3 songs and music videos."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
     <link rel="icon" type="image/svg" href="{% static 'image/logo.svg' %}" />
     <link
       rel="stylesheet"
@@ -40,7 +59,7 @@
         </nav>
 
         <!-- Menu Icon (Trigger Button) -->
-        <div class="action--menu" id="action--menu">
+        <div class="action--menu" id="action--menu" style="display: none">
           <svg
             width="3rem"
             height="3rem"
@@ -108,10 +127,12 @@
 
         <div id="layout-1" class="section">
           <div id="layout-1_1_1">
-            <p>DISCOVER YOUR NEXT FAVORITE SONG TODAY</p>
+            <h1>DISCOVER AND DOWNLOAD YOUR NEXT FAVORITE SONG TODAY</h1>
           </div>
           <div id="layout-1_1_2">
-            <p>Download your favorite songs, paste in youtube / spotify link</p>
+            <h3>
+              Free Music Download from YouTube & Spotify - Just Paste the Link
+            </h3>
           </div>
 
           <div id="layout-1_2">

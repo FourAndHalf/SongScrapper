@@ -3,7 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  overflow: scroll;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 @keyframes fadeIn {
@@ -29,11 +32,11 @@ body {
 .action--menu,
 .action--close {
   pointer-events: auto;
-  position: absolute;
-  top: 2.5rem;
-  right: 2.5rem;
+  position: fixed;
+  top: clamp(1rem, 4vw, 2.5rem);
+  right: clamp(1rem, 4vw, 2.5rem);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 1000;
+  z-index: 1001;
   background: none;
 }
 
@@ -54,8 +57,8 @@ body {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 75%;
-  max-width: 250px;
+  width: 100%;
+  max-width: 300px;
   height: 100vh;
   background-color: #333;
   color: white;
@@ -64,6 +67,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: right 0.3s ease-in-out;
+  z-index: 1000;
 }
 
 /* Navbar Links */
@@ -103,30 +107,33 @@ body {
 
 #layout-1 {
   width: 100%;
-  height: 40vw;
+  min-height: 100vh;
   background-image: url('../image/layout-1-original.jpg');
   background-size: cover;
   background-position: top;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem;
 }
 
 #layout-1_1_1 {
   text-align: center;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-family: "BANGERS", system-ui;
   color: #fff;
   font-weight: 700;
+  padding: 0 1rem;
 }
 
 #layout-1_1_2 {
   margin-bottom: 2rem;
   text-align: center;
-  font-size: 1.2rem !important;
+  font-size: clamp(1rem, 3vw, 1.2rem) !important;
   font-family: Arial, Helvetica, sans-serif;
   color: #fff;
   font-weight: 700;
+  padding: 0 1rem;
 }
 
 #layout-1_2 {
@@ -139,19 +146,26 @@ body {
 }
 
 #layout-1_2_2 {
-  width: 65rem;
+  width: min(65rem, 90%);
   position: relative;
+  margin: 0 auto;
 }
 
 #layout-1_2_2 input {
   width: 100%;
   font-family: monospace;
-  font-size: 1rem;
-  background: transparent;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  background: rgba(255, 255, 255, 0.9);
   outline: none;
   border: none;
   color: #222;
-  padding: 0.1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+#layout-1_2_2 input::placeholder {
+  color: #666;
+  opacity: 0.8;
 }
 
 #layout-1_2_2 i {
@@ -196,44 +210,39 @@ body {
 }
 
 #layout-1_3_2 {
-  width: 20%;
+  width: min(300px, 90%);
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin: 1rem auto;
+  gap: clamp(0.5rem, 3vw, 1rem);
+  flex-wrap: wrap;
+}
+
+#explore, #download {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-family: monospace;
+  padding: clamp(0.3rem, 2vw, 0.4rem) clamp(0.5rem, 2vw, 0.7rem);
+  border-radius: 10px;
+  border: 2px solid #fafafa;
+  box-shadow: 3px 3px #fafafa;
+  cursor: pointer;
+  margin: clamp(20px, 4vw, 35px) 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 #explore {
-  font-size: 1.5rem;
   color: #000;
-  font-family: monospace;
-  padding: 0.4rem 0.7rem;
-  border-radius: 10px;
-  border: 2px solid #fafafa;
   background: #fff;
-  box-shadow: 3px 3px #fafafa;
-  cursor: pointer;
-  margin: 35px 0;
-}
-
-#explore:active {
-  box-shadow: none;
-  transform: translate(3px, 3px);
 }
 
 #download {
-  font-size: 1.5rem;
   color: #fff;
-  font-family: monospace;
-  padding: 0.4rem 0.7rem;
-  margin: 0.5rem;
-  border-radius: 10px;
-  border: 2px solid #fafafa;
   background: transparent;
-  box-shadow: 3px 3px #fafafa;
-  cursor: pointer;
-  margin: 35px 0;
 }
 
+#explore:active,
 #download:active {
   box-shadow: none;
   transform: translate(3px, 3px);
@@ -242,7 +251,7 @@ body {
 #layout-2 {
   display: none;
   width: 100%;
-  height: 40vw;
+  min-height: 100vh;
   background-image: url('../image/layout-2-original.jpg');
   background-size: cover;
   background-position: center;
@@ -251,7 +260,7 @@ body {
 #layout-3 {
   display: none;
   width: 100%;
-  height: 40vw;
+  min-height: 100vh;
   background-image: url('../image/layout-3-original.jpg');
   background-size: cover;
   background-position: center;
@@ -259,6 +268,127 @@ body {
 
 #layout-4 {
   width: 100%;
-  height: 20vw;
+  min-height: 50vh;
   background: #fff;
+  padding: 2rem 1rem;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: 2rem 0;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(45px, 10vw, 52px);
+  height: clamp(45px, 10vw, 52px);
+  border-radius: 50%;
+  background-color: #63adc5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.05);
+  background-color: #4a8a9e;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon:active {
+  transform: translateY(-2px) scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon svg {
+  width: clamp(20px, 5vw, 24px);
+  height: clamp(20px, 5vw, 24px);
+  fill: white;
+  transition: transform 0.3s ease;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  #layout-1_2 {
+    padding: 0 1rem;
+  }
+
+  #layout-1_2_2 input {
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+  }
+
+  #navbar ul li a {
+    font-size: 2rem;
+  }
+
+  .action--menu svg,
+  .action--close svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  #layout-4 {
+    min-height: 70vh;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #layout-1_2_2 {
+    width: min(65rem, 95%);
+  }
+
+  #layout-1_2_2 input {
+    padding: 0.6rem;
+  }
+
+  #explore, #download {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  #layout-1_1_1 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  #layout-1_1_2 {
+    margin-bottom: 1.5rem;
+  }
+
+  #layout-1_2_2 input {
+    font-size: 0.8rem;
+  }
+
+  #navbar ul li {
+    margin: 1.5rem 0;
+  }
+
+  #navbar ul li a {
+    font-size: 1.5rem;
+  }
+
+  .action--menu svg,
+  .action--close svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .social-icon:hover svg {
+    transform: scale(1.1);
+  }
+
+  #layout-4 {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
 }

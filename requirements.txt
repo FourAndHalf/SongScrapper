@@ -15,6 +15,7 @@ pretty_errors==1.2.25
 # Environment Variables
 python-dotenv==1.0.1
 gunicorn
+whitenoise
 
 # YAML Parsing (Use the latest stable version)
 PyYAML

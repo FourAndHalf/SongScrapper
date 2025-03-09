@@ -27,8 +27,11 @@ else
     echo "Warning: .env file not found"
 fi
 
-# Default port if not set
-PORT=${PORT:-8000}
+# Default port if not set (Render uses PORT env var)
+PORT=${PORT:-10000}
+
+# Ensure the port is available to Render's port scanner
+echo "Port $PORT will be used for the application."
 
 # Check required environment variables
 check_env_var "SECRET_KEY"
@@ -52,18 +55,19 @@ python manage.py collectstatic --noinput
 # Setup signal handler
 trap cleanup SIGTERM SIGINT
 
-# Start Celery worker with better heartbeat handling
+# Start Celery worker
 echo "Starting Celery worker..."
+CELERY_BROKER_CONNECTION_RETRY=true \
+CELERY_BROKER_CONNECTION_MAX_RETRIES=3 \
 celery -A SpotifyDownloader worker \
     --loglevel=info \
     --concurrency=2 \
     --max-tasks-per-child=1000 \
     --time-limit=3600 \
     --soft-time-limit=3300 \
-    --broker-heartbeat=10 \
-    --broker-connection-timeout=30 \
-    --broker-connection-retry \
-    --broker-connection-max-retries=3 &
+    --without-gossip \
+    --without-mingle \
+    --pool=solo &
 
 # Start Gunicorn
 echo "Starting Gunicorn server on port $PORT..."

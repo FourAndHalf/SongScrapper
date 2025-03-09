@@ -10,6 +10,13 @@ check_env_var() {
     fi
 }
 
+# Function to cleanup child processes
+cleanup() {
+    echo "Stopping all processes..."
+    kill $(jobs -p) 2>/dev/null || true
+    exit 0
+}
+
 # Load environment variables
 if [ -f .env ]; then
     echo "Loading environment variables from .env file..."
@@ -26,6 +33,7 @@ PORT=${PORT:-8000}
 # Check required environment variables
 check_env_var "SECRET_KEY"
 check_env_var "DATABASE_URL"
+check_env_var "CELERY_BROKER_URL"
 
 echo "Starting deployment process..."
 
@@ -41,12 +49,30 @@ python manage.py migrate --noinput
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-# Start Gunicorn with proper configuration
+# Setup signal handler
+trap cleanup SIGTERM SIGINT
+
+# Start Celery worker
+echo "Starting Celery worker..."
+celery -A SpotifyDownloader worker \
+    --loglevel=info \
+    --concurrency=2 \
+    --max-tasks-per-child=1000 \
+    --time-limit=3600 \
+    --soft-time-limit=3300 &
+
+# Start Gunicorn
 echo "Starting Gunicorn server on port $PORT..."
-exec gunicorn SpotifyDownloader.wsgi:application \
+gunicorn SpotifyDownloader.wsgi:application \
     --bind 0.0.0.0:$PORT \
     --workers 3 \
     --timeout 120 \
     --access-logfile - \
     --error-logfile - \
-    --log-level info
+    --log-level info &
+
+# Wait for any process to exit
+wait -n
+
+# Exit with status of process that exited first
+exit $?

@@ -52,14 +52,18 @@ python manage.py collectstatic --noinput
 # Setup signal handler
 trap cleanup SIGTERM SIGINT
 
-# Start Celery worker
+# Start Celery worker with better heartbeat handling
 echo "Starting Celery worker..."
 celery -A SpotifyDownloader worker \
     --loglevel=info \
     --concurrency=2 \
     --max-tasks-per-child=1000 \
     --time-limit=3600 \
-    --soft-time-limit=3300 &
+    --soft-time-limit=3300 \
+    --broker-heartbeat=10 \
+    --broker-connection-timeout=30 \
+    --broker-connection-retry \
+    --broker-connection-max-retries=3 &
 
 # Start Gunicorn
 echo "Starting Gunicorn server on port $PORT..."

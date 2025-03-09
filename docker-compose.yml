@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/songscrapperdb
+      - CELERY_BROKER_URL=redis://redis:6379/0
+
+  celery:
+    build: .
+    command: celery -A SpotifyDownloader worker --loglevel=info
+    volumes:
+      - .:/app
+      - media_volume:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - web
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/songscrapperdb
+      - CELERY_BROKER_URL=redis://redis:6379/0
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=songscrapperdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_volume:
+  media_volume:

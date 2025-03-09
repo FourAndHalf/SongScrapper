@@ -56,14 +56,24 @@ def download_song_from_youtube_search(song_name, artist):
             'preferredquality': '320',
         }],
         'outtmpl': str(output_path),
-        'cookiesfrombrowser': ('chrome',),  # Use Chrome cookies
         'quiet': True,
         'no_warnings': True,
         'extract_flat': 'in_playlist',
         'socket_timeout': 30,
         'retries': 3,
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'nocheckcertificate': True
+        'nocheckcertificate': True,
+        'extractor_args': {
+            'youtube': {
+                'skip': ['dash', 'hls'],
+                'player_client': ['android', 'web'],
+            }
+        },
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.101 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-us,en;q=0.5',
+            'Sec-Fetch-Mode': 'navigate',
+        }
     }
 
     logger.info(f"Before starting downloading track: {search_query}")
@@ -89,14 +99,24 @@ def download_song_from_youtube_link(link):
             'preferredquality': '320',
         }],
         'outtmpl': str(output_path),
-        'cookiesfrombrowser': ('chrome',),  # Use Chrome cookies
         'quiet': True,
         'no_warnings': True,
         'extract_flat': 'in_playlist',
         'socket_timeout': 30,
         'retries': 3,
-        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'nocheckcertificate': True
+        'nocheckcertificate': True,
+        'extractor_args': {
+            'youtube': {
+                'skip': ['dash', 'hls'],
+                'player_client': ['android', 'web'],
+            }
+        },
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 12) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.101 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-us,en;q=0.5',
+            'Sec-Fetch-Mode': 'navigate',
+        }
     }
 
     logger.info(f"Before starting downloading track: {link}")

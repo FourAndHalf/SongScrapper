@@ -57,8 +57,6 @@ trap cleanup SIGTERM SIGINT
 
 # Start Celery worker
 echo "Starting Celery worker..."
-CELERY_BROKER_CONNECTION_RETRY=true \
-CELERY_BROKER_CONNECTION_MAX_RETRIES=3 \
 celery -A SpotifyDownloader worker \
     --loglevel=info \
     --concurrency=2 \

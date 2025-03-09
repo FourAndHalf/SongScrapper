@@ -15,7 +15,7 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Kolkata"
 
-ALLOWED_HOSTS = ["yourdomain.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["yourdomain.com", "localhost", "127.0.0.1", "songscrapper.onrender.com", "sssyoutubespotifydownloader.co.in"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
